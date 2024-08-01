@@ -1,20 +1,20 @@
 package org.example;
 
+import java.time.Duration;
+import java.util.List;
+
 import org.junit.jupiter.api.AfterEach;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
-import java.time.Duration;
-import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.assertFalse;
 
 /**
  * Author: Sanoj Indrasinghe
@@ -34,36 +34,24 @@ public class SearchPageTest {
     @AfterEach
     public void tearDown() {
         if (driver != null) {
-            //driver.quit();
+            /*driver.quit();*/
         }
     }
 
     @Test
     public void testSearchFunctionality() {
         // Open the search page
-        driver.get("http://localhost/api-flora/search_page.php");
-
-        // Find and fill the email field
-        WebElement emailField = driver.findElement(By.name("email"));
-        emailField.sendKeys("para@gmail.com");
-
-        // Find and fill the password field
-        WebElement passwordField = driver.findElement(By.name("pass"));
-        passwordField.sendKeys("123");
-
-        // Find and click the login button
-        WebElement loginButton = driver.findElement(By.name("submit"));
-        loginButton.click();
+        driver.get("http://localhost/FlowerShopManagement/FlowerShopManagement/search.php");
 
         // Perform a search
-        WebElement searchBox = driver.findElement(By.name("search_btn"));
-        searchBox.sendKeys("Twilight Bloom");
+        WebElement searchBox = driver.findElement(By.name("search_box")); // Fix: Corrected the name attribute
+        searchBox.sendKeys("viburnum");
 
-        WebElement searchButton = driver.findElement(By.name("search_btn"));
-        searchButton.click();
+        WebElement searchButton = wait.until(ExpectedConditions.elementToBeClickable(By.name("search_btn")));
+        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", searchButton);
 
         // Wait for search results to be displayed
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("product_container")));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("box-container")));
 
         // Verify that products are displayed
         List<WebElement> products = driver.findElements(By.cssSelector(".box-container .box"));
@@ -72,7 +60,7 @@ public class SearchPageTest {
         // Optionally, check the content of the first product
         if (!products.isEmpty()) {
             WebElement firstProduct = products.get(0);
-            assertTrue(firstProduct.getText().contains("rose"), "First product does not contain 'rose'");
+            assertTrue(firstProduct.getText().toLowerCase().contains("viburnum"), "First product does not contain 'viburnum'");
         }
     }
 }
