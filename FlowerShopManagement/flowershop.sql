@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 28, 2024 at 08:27 PM
+-- Generation Time: Aug 01, 2024 at 10:21 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -57,6 +57,13 @@ CREATE TABLE `cart` (
   `image` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `cart`
+--
+
+INSERT INTO `cart` (`id`, `user_id`, `pid`, `name`, `price`, `quantity`, `image`) VALUES
+(10, 4, 5, 'hyacinth', 1000, 1, 'hyacinth.jpg');
+
 -- --------------------------------------------------------
 
 --
@@ -71,6 +78,13 @@ CREATE TABLE `messages` (
   `number` varchar(12) NOT NULL,
   `message` varchar(500) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `messages`
+--
+
+INSERT INTO `messages` (`id`, `user_id`, `name`, `email`, `number`, `message`) VALUES
+(2, 4, 'test', 'test@gmail.com', '455', 'hi');
 
 -- --------------------------------------------------------
 
@@ -92,6 +106,15 @@ CREATE TABLE `orders` (
   `payment_status` varchar(20) NOT NULL DEFAULT 'pending'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `orders`
+--
+
+INSERT INTO `orders` (`id`, `user_id`, `name`, `number`, `email`, `method`, `address`, `total_products`, `total_price`, `placed_on`, `payment_status`) VALUES
+(4, 4, 'test', '2525', 'test@gmail.com', 'paytm', '197 Panchikawatte Road, 10, Panchikawatte, Colombo, - 4566', 'gerbera (1500 x 1) - ', 1500, '2024-08-01', 'completed'),
+(5, 4, 'test', '2525', 'test@gmail.com', 'paytm', '197 Panchikawatte Road, 10, Panchikawatte, Colombo, - 4566', 'hyacinth (1000 x 2) - ', 2000, '2024-08-01', ''),
+(6, 4, 'test', '2525', 'test@gmail.com', 'paytm', '197 Panchikawatte Road, 10, Panchikawatte, Colombo, - 4566', 'hyacinth (1000 x 1) - gerbera (1500 x 1) - ', 2500, '2024-08-01', 'pending');
+
 -- --------------------------------------------------------
 
 --
@@ -105,6 +128,35 @@ CREATE TABLE `products` (
   `price` int(10) NOT NULL,
   `image` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `products`
+--
+
+INSERT INTO `products` (`id`, `name`, `category`, `price`, `image`) VALUES
+(5, 'hyacinth', 'bouquets', 1000, 'hyacinth.jpg'),
+(6, 'gerbera', 'bouquets', 1500, 'gerbera.jpg'),
+(7, 'viburnum', 'bouquets', 1800, 'viburnum.jpg'),
+(8, 'anemone', 'bouquets', 1600, 'anemone.jpg'),
+(9, 'rose', 'bouquets', 1900, 'download (1).jpg'),
+(10, 'yellow rose', 'bouquets', 1900, 'image2.jpg'),
+(11, 'gladios', 'fresh flowers', 1500, 'gladiolus.jpg'),
+(12, 'lily', 'fresh flowers', 1500, 'lily.jpg'),
+(13, 'hydrangea', 'fresh flowers', 2000, 'hydrangea.jpg'),
+(14, 'dahlia', 'fresh flowers', 1600, 'dahlia.jpg'),
+(15, 'lavender', 'fresh flowers', 1700, 'lavender.jpg'),
+(16, 'orchid', 'fresh flowers', 1800, 'orchid.jpg'),
+(17, 'daffodil', 'fresh flowers', 1450, 'daffodil.jpg'),
+(18, 'birthday card1', 'cards', 500, 'hb love.jpg'),
+(19, 'birthday card2 ', 'cards', 450, 'hblove2.jpg'),
+(20, 'birthday card3', 'cards', 250, 'hb bst.jpg'),
+(21, 'valentine card', 'cards', 700, 'vcard1.jpg'),
+(22, 'wedding card1', 'cards', 800, 'wcard1.jpg'),
+(23, 'wedding card2', 'cards', 900, 'wcard2.jpg'),
+(24, 'wedding card3', 'cards', 900, 'wcard3.jpg'),
+(25, 'Today deal 1', 'today&#39;s deal', 800, 'special1.jpg'),
+(26, 'Today deal 2', 'today&#39;s deal', 1000, 'special2.jpg'),
+(27, 'Today deal3', 'today&#39;s deal', 1200, 'special3.jpg');
 
 -- --------------------------------------------------------
 
@@ -126,7 +178,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `number`, `password`, `address`) VALUES
-(1, 'amd', 'amd@gmail.com', '0', '57dc45d5dfc2c509a567c75bdda5c31225144e34', '');
+(1, 'amd', 'amd@gmail.com', '0', '57dc45d5dfc2c509a567c75bdda5c31225144e34', ''),
+(4, 'test', 'test@gmail.com', '2525', '9bc34549d565d9505b287de0cd20ac77be1d3f2c', '197 Panchikawatte Road, 10, Panchikawatte, Colombo, - 4566');
 
 --
 -- Indexes for dumped tables
@@ -176,37 +229,37 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `admin`
 --
 ALTER TABLE `admin`
-  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `messages`
 --
 ALTER TABLE `messages`
-  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
