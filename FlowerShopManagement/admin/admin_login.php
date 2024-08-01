@@ -65,7 +65,7 @@ if(isset($message)){
       <input type="text" name="name" maxlength="20" required placeholder="enter your username" class="box" oninput="this.value = this.value.replace(/\s/g, '')">
       <input type="password" name="pass" maxlength="20" required placeholder="enter your password" class="box" oninput="this.value = this.value.replace(/\s/g, '')">
       <input type="submit" value="login now" name="submit" class="btn">
-      <!--<p>For <a href="../login.php">user login</a></p>-->
+      <p>For <a href="../login.php">user login</a></p>
    </form>
 
 </section>
